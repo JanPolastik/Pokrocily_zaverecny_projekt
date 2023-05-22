@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Upravit";
 }
+<section class="m-5" style="min-height: 500px;">
 
 <h4>Upravit pojištěnce</h4>
 <hr />
@@ -59,7 +60,7 @@
                     <span asp-validation-for="PSC" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <input type="submit" value="Uložit" class="btn btn-success" />
             </div>
         </form>
@@ -69,6 +70,7 @@
 <div>
     <a class="btn btn-primary" asp-action="Index">Zpět</a>
 </div>
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
