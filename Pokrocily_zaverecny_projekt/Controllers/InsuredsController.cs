@@ -56,7 +56,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Adress")] Insured insured)
+        public async Task<IActionResult> Create([Bind("Id,Name,Adress,LastName,HouseNumber,Email,PhoneNumber,PSC,Town")] Insured insured)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Adress")] Insured insured)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Adress,LastName,HouseNumber,Email,PhoneNumber,PSC,Town")] Insured insured)
         {
             if (id != insured.Id)
             {

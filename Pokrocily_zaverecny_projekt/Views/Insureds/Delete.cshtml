@@ -6,11 +6,11 @@
 <section class="m-5" style="min-height: 500px;">
 <h4>Smazání pojištěného</h4>
 
-<h5>Jste si jist že chcete smazat pojištěného?</h5>
+<h5>Opravdu chcete smazat pojištěného?</h5>
 <div>
    
     
-    <dl class="row">
+    <dl class="row border-1">
         <dt class = "col-sm-2">
            Jméno
         </dt>
@@ -27,7 +27,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Smazat" class="btn btn-danger" /> |
             <a class="btn btn-primary" asp-action="Index">Zpět</a>
     </form>
 </div>
