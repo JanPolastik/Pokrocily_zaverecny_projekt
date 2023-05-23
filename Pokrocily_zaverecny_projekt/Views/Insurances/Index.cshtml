@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Pokrocily_zaverecny_projekt.Models.Insurance>
+
+@{
+    ViewData["Title"] = "Pojištění";
+}
+
+<article class="m-5" style="min-height: 500px;">
+    <div class="d-flex justify-content-center">
+        <div class="card-group fixed-center">
+            <div class="card" style="max-width: 18rem;">
+                <img class="card-img-top" src="~/images/zivot.png" />
+                <div class="card-body">
+                    <h4>Životní pojištění</h4>
+                    <p>Pro vaši klidnější mysl a jistotu vaší rodiny</p>
+                </div>
+                <div class="card-footer">
+                    <small></small>
+                </div>
+            </div>
+            <div class="card" style="max-width: 18rem;">
+                <img class="card-img-top" src="~/images/vozidlo.png" />
+                <div class="card-body">
+                    <h4>Pojištění vozidel</h4>
+                    <p>Ochrana vašeho auta</p>
+                </div>
+                <div class="card-footer">
+                    <small></small>
+                </div>
+            </div>
+
+            <div class="card" style="max-width: 18rem;">
+                <img class="card-img-top" src="~/images/majetek.png" />
+                <div class="card-body">
+                    <h4>Pojištění majetku</h4>
+                    <p>Ochrání vás i proti přírodním živlům</p>
+                </div>
+                <div class="card-footer">
+                    <small></small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsurenceObject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuranceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuredId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsurenceObject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</article>

@@ -11,5 +11,6 @@ namespace Pokrocily_zaverecny_projekt.Data
         {
         }
         public DbSet<Pokrocily_zaverecny_projekt.Models.Insured>? Insured { get; set; }
+        public DbSet<Pokrocily_zaverecny_projekt.Models.Insurance>? Insurance { get; set; }
     }
 }

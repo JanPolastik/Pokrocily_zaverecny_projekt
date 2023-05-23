@@ -10,87 +10,87 @@ using Pokrocily_zaverecny_projekt.Models;
 
 namespace Pokrocily_zaverecny_projekt.Controllers
 {
-    public class InsuredsController : Controller
+    public class InsurancesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public InsuredsController(ApplicationDbContext context)
+        public InsurancesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Insureds
+        // GET: Insurances
         public async Task<IActionResult> Index()
         {
-              return _context.Insured != null ? 
-                          View(await _context.Insured.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Insured'  is null.");
+              return _context.Insurance != null ? 
+                          View(await _context.Insurance.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Insurance'  is null.");
         }
 
-        // GET: Insureds/Details/5
+        // GET: Insurances/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Insured == null)
+            if (id == null || _context.Insurance == null)
             {
                 return NotFound();
             }
 
-            var insured = await _context.Insured
+            var insurance = await _context.Insurance
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (insured == null)
+            if (insurance == null)
             {
                 return NotFound();
             }
 
-            return View(insured);
+            return View(insurance);
         }
 
-        // GET: Insureds/Create
+        // GET: Insurances/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Insureds/Create
+        // POST: Insurances/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, Jmeno, Adresa, Prijmeni, CisloDomu, EmailInsured, Telefon, PSC, Mesto")] Insured insured)
+        public async Task<IActionResult> Create([Bind("Id,InsuranceName,InsuredId=Insured.Id,InsuranceValue,InsurenceObject,DateFrom,DateTo")] Insurance insurance)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(insured);
+                _context.Add(insurance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(insured);
+            return View(insurance);
         }
 
-        // GET: Insureds/Edit/5
+        // GET: Insurances/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Insured == null)
+            if (id == null || _context.Insurance == null)
             {
                 return NotFound();
             }
 
-            var insured = await _context.Insured.FindAsync(id);
-            if (insured == null)
+            var insurance = await _context.Insurance.FindAsync(id);
+            if (insurance == null)
             {
                 return NotFound();
             }
-            return View(insured);
+            return View(insurance);
         }
 
-        // POST: Insureds/Edit/5
+        // POST: Insurances/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Jmeno,Adresa,Prijmeni,CisloDomu,EmailInsured,Telefon,PSC,Mesto")] Insured insured)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,InsuranceName,InsuredId,InsuranceValue,InsurenceObject,DateFrom,DateTo")] Insurance insurance)
         {
-            if (id != insured.Id)
+            if (id != insurance.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             {
                 try
                 {
-                    _context.Update(insured);
+                    _context.Update(insurance);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InsuredExists(insured.Id))
+                    if (!InsuranceExists(insurance.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace Pokrocily_zaverecny_projekt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(insured);
+            return View(insurance);
         }
 
-        // GET: Insureds/Delete/5
+        // GET: Insurances/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Insured == null)
+            if (id == null || _context.Insurance == null)
             {
                 return NotFound();
             }
 
-            var insured = await _context.Insured
+            var insurance = await _context.Insurance
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (insured == null)
+            if (insurance == null)
             {
                 return NotFound();
             }
 
-            return View(insured);
+            return View(insurance);
         }
 
-        // POST: Insureds/Delete/5
+        // POST: Insurances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Insured == null)
+            if (_context.Insurance == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Insured'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Insurance'  is null.");
             }
-            var insured = await _context.Insured.FindAsync(id);
-            if (insured != null)
+            var insurance = await _context.Insurance.FindAsync(id);
+            if (insurance != null)
             {
-                _context.Insured.Remove(insured);
+                _context.Insurance.Remove(insurance);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InsuredExists(int id)
+        private bool InsuranceExists(int id)
         {
-          return (_context.Insured?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Insurance?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
