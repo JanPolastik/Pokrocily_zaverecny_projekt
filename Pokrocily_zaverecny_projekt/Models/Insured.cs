@@ -6,21 +6,21 @@ namespace Pokrocily_zaverecny_projekt.Models
     public class Insured
     {
         public int Id { get; set; }
-        public string Jmeno { get; set; } = "";
         [Required(ErrorMessage = "Vyplňte jméno")]
-        public string Adresa { get; set; } = "";
+        public string Jmeno { get; set; } = "";
         [Required(ErrorMessage = "Vyplňte adresu")]
-        public string Prijmeni { get; set; } = "";
+        public string Adresa { get; set; } = "";
         [Required(ErrorMessage = "Vyplňte příjmení")]
-        public int CisloDomu { get; set; }
+        public string Prijmeni { get; set; } = "";
         [Required(ErrorMessage = "Vyplňte číslo domu")]
-        public string EmailInsured { get; set; } = "";
+        public int CisloDomu { get; set; }
         [Required(ErrorMessage = "Vyplňte Email")]
-        public int Telefon { get; set; }
+        public string EmailInsured { get; set; } = ""; 
         [Required(ErrorMessage = "Vyplňte telefon")]
-        public int SmerovaciCislo { get; set; }
+        public int Telefon { get; set; }
         [Required(ErrorMessage = "Vyplňte PSČ")]
-        public string Mesto { get; set; } = "";
+        public int SmerovaciCislo { get; set; }
         [Required(ErrorMessage = "Vyplňte město")]
+        public string Mesto { get; set; } = "";
     }
 }
