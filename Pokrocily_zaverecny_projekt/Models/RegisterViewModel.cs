@@ -3,8 +3,7 @@ using System.Xml.Linq;
 
 namespace Pokrocily_zaverecny_projekt.Models
 {
-    public class RegisterViewModelcs
-    {
+    
         public class RegisterViewModel
         {
             [Required]
@@ -23,5 +22,5 @@ namespace Pokrocily_zaverecny_projekt.Models
             [Compare("Password", ErrorMessage = "Zadaná hesla se musí shodovat.")]
             public string ConfirmPassword { get; set; } = "";
         }
-    }
+    
 }

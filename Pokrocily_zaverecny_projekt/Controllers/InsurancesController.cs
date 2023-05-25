@@ -22,6 +22,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // GET: Insurances
         public async Task<IActionResult> Index()
         {
+            var ApplicationDbContext = _context.Insurance.Include(i => i.Insured);
               return _context.Insurance != null ? 
                           View(await _context.Insurance.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Insurance'  is null.");
@@ -36,6 +37,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             }
 
             var insurance = await _context.Insurance
+                .Include(i => i.Insured)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (insurance == null)
             {
@@ -56,7 +58,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,InsuranceName,InsuredId=Insured.Id,InsuranceValue,InsurenceObject,DateFrom,DateTo")] Insurance insurance)
+        public async Task<IActionResult> Create([Bind("Id,InsuranceName,InsuredId,InsuranceValue,InsurenceObject,DateFrom,DateTo")] Insurance insurance)
         {
             if (ModelState.IsValid)
             {

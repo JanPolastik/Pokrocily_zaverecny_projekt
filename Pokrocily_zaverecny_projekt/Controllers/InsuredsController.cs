@@ -22,8 +22,9 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // GET: Insureds
         public async Task<IActionResult> Index()
         {
+           
               return _context.Insured != null ? 
-                          View(await _context.Insured.ToListAsync()) :
+                          View(await _context.Insured.Include(p => p.Insurances).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Insured'  is null.");
         }
 
@@ -36,6 +37,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             }
 
             var insured = await _context.Insured
+                .Include(p => p.Insurances)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (insured == null)
             {
@@ -159,5 +161,6 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         {
           return (_context.Insured?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        
     }
 }

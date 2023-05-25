@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pokrocily_zaverecny_projekt.Models;
-using static Pokrocily_zaverecny_projekt.Models.RegisterViewModelcs;
+using static Pokrocily_zaverecny_projekt.Models.RegisterViewModel;
 
 namespace Pokrocily_zaverecny_projekt.Controllers
 {
@@ -70,7 +70,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
+        public async Task<IActionResult> Register(Models.RegisterViewModel model, string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)

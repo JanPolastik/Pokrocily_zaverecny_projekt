@@ -254,7 +254,7 @@ namespace Pokrocily_zaverecny_projekt.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Insurance");
+                    b.ToTable("Insurance", (string)null);
                 });
 
             modelBuilder.Entity("Pokrocily_zaverecny_projekt.Models.Insured", b =>
@@ -296,7 +296,7 @@ namespace Pokrocily_zaverecny_projekt.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Insured");
+                    b.ToTable("Insured", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
