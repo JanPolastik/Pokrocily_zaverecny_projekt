@@ -4,54 +4,64 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<section class="m-5" style="min-height: 500px;">
 
-<h4>Insurance</h4>
+<h4>Nová pojistka</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-6">
+        <form asp-action="Create" class="form-inline">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="InsuranceName" class="control-label"></label>
-                <input asp-for="InsuranceName" class="form-control" />
-                <span asp-validation-for="InsuranceName" class="text-danger"></span>
+            <div class="row my-3">
+                <div class="form-group col">
+                    <label asp-for="InsuranceName" class="control-label"></label>
+                    <input asp-for="InsuranceName" class="form-control" />
+                    <span asp-validation-for="InsuranceName" class="text-danger"></span>
+                </div>
+                    
+                <div class="form-group col">
+                    <label asp-for="InsuranceValue" class="control-label"></label>
+                    <input asp-for="InsuranceValue" class="form-control" />
+                    <span asp-validation-for="InsuranceValue" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="InsuredId" class="control-label"></label>
-                <input asp-for="InsuredId" class="form-control" />
-                <span asp-validation-for="InsuredId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsuranceValue" class="control-label"></label>
-                <input asp-for="InsuranceValue" class="form-control" />
-                <span asp-validation-for="InsuranceValue" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InsurenceObject" class="control-label"></label>
-                <input asp-for="InsurenceObject" class="form-control" />
-                <span asp-validation-for="InsurenceObject" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateFrom" class="control-label"></label>
-                <input asp-for="DateFrom" class="form-control" />
-                <span asp-validation-for="DateFrom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateTo" class="control-label"></label>
-                <input asp-for="DateTo" class="form-control" />
-                <span asp-validation-for="DateTo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <div class="row my-3">
+                <div class="form-group col">
+                    <label asp-for="InsurenceObject" class="control-label"></label>
+                    <input asp-for="InsurenceObject" class="form-control" />
+                    <span asp-validation-for="InsurenceObject" class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="DateFrom" class="control-label"></label>
+                    <input asp-for="DateFrom" class="form-control" />
+                    <span asp-validation-for="DateFrom" class="text-danger"></span>
+			    </div>
+	        </div>
+            <div class="row my-3">
+                 <div class="form-group col">
+                     <label asp-for="InsuredId" class="control-label"></label>
+                     <input asp-for="InsuredId" class="form-control" />
+                     <span asp-validation-for="InsuredId" class="text-danger"></span>
+                 </div>
+            
+                <div class="form-group col">
+                    <label asp-for="DateTo" class="control-label"></label>
+                    <input asp-for="DateTo" class="form-control" />
+                    <span asp-validation-for="DateTo" class="text-danger"></span>
+                </div>
+	        </div>
+		</form>
+        
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="form-group">
+	<input type="submit" value="Vytvořit" class="btn btn-primary" />
 </div>
+
+<div class="btn btn-primary">
+    <a asp-action="Index">Zpět</a>
+</div>
+</section>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

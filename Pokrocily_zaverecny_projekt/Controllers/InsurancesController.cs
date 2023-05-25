@@ -50,6 +50,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // GET: Insurances/Create
         public IActionResult Create()
         {
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Jmeno");
             return View();
         }
 
@@ -66,6 +67,8 @@ namespace Pokrocily_zaverecny_projekt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Jmeno", insurance.InsuredId);
+
             return View(insurance);
         }
 
@@ -129,6 +132,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             }
 
             var insurance = await _context.Insurance
+                
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (insurance == null)
             {
