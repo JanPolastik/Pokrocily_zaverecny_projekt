@@ -50,7 +50,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         // GET: Insurances/Create
         public IActionResult Create()
         {
-            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Jmeno");
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id","Jmeno", "Prijmeni");
             return View();
         }
 
@@ -65,9 +65,12 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             {
                 _context.Add(insurance);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToRoute(new { controller = "Insureds", action = "Index" });
             }
-            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Jmeno", insurance.InsuredId);
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(),
+                                                   "Id",
+                                                   "Prijmeni",
+                                                   insurance.InsuredId);
 
             return View(insurance);
         }
@@ -85,6 +88,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             {
                 return NotFound();
             }
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Prijmeni");
             return View(insurance);
         }
 
@@ -118,8 +122,9 @@ namespace Pokrocily_zaverecny_projekt.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToRoute(new { controller = "Insureds", action = "Index" });
             }
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Prijmeni", insurance.InsuredId);
             return View(insurance);
         }
 
@@ -132,13 +137,13 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             }
 
             var insurance = await _context.Insurance
-                
+                .Include(i => i.Insured)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (insurance == null)
             {
                 return NotFound();
             }
-
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Prijmeni");
             return View(insurance);
         }
 
@@ -158,7 +163,8 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewData["InsuredId"] = new SelectList(_context.Set<Insured>(), "Id", "Prijmeni", insurance.InsuredId);
+            return RedirectToRoute(new { controller = "Insureds", action = "Index" });
         }
 
         private bool InsuranceExists(int id)

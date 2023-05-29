@@ -1,13 +1,9 @@
 ﻿@model Pokrocily_zaverecny_projekt.Models.Insured
-
-
-
 @{
     ViewData["Title"] = "Detail";
 }
-
 <section class="m-5" style="min-height: 500px;">
-    <h1>Podrobnosti</h1>
+    <h4>Podrobnosti</h4>
 
     <div class="my-3">
         <div class="d-flex">
@@ -15,8 +11,9 @@
                 <img src="~/images/pojistenec.png" width="120">
             </div>
             <div class="flex-grow-1 ms-3">
-                <h5 class="mt-0">@Html.DisplayFor(model => model.Jmeno)</h5>
-                <p>@Html.DisplayFor(model => model.Adresa)</p>
+                <h5 class="mt-0">@Html.DisplayFor(model => model.Jmeno) @Html.DisplayFor(model => model.Prijmeni)</h5>
+                <p>@Html.DisplayFor(model => model.Adresa) @Html.DisplayFor(model => model.CisloDomu)</p>
+                <p>@Html.DisplayFor(model => model.Mesto) @Html.DisplayFor(model => model.SmerovaciCislo)</p>
             </div>
         </div>
     </div>
@@ -48,8 +45,8 @@
                         </td>
 
                         <td class="align-middle">
-                            <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Editovat</a> |
-                            <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Odstranit</a>
+                            <a class="btn btn-outline-warning" asp-controller="Insurances" asp-action="Edit" asp-route-id="@item.Id">Editovat</a> |
+                            <a class="btn btn-outline-danger" asp-controller="Insurances" asp-action="Delete" asp-route-id="@item.Id">Odstranit</a>
                         </td>
                     </tr>
                 }
@@ -59,10 +56,10 @@
 	<div>
         <div class="d-flex justify-content-md-center">
 		<a class="btn btn-primary col-lg-2 m-2" asp-controller="Insurances" asp-action="Create">Přidat pojištění</a>
-		<a class="btn btn-warning col-md-auto m-2" asp-action="Edit" asp-route-id="@Model?Insured.Id">Editovat pojištěnce</a> 
-        <a class="btn btn-danger col-lg-2 m-2" asp-action="Delete" asp-route-id="@Model?Insured.Id">Odstranit pojištěnce</a>
+		<a class="btn btn-warning col-md-auto m-2" asp-controller="Insureds" asp-action="Edit" asp-route-id="@Model?.Id">Editovat pojištěnce</a> 
+        <a class="btn btn-danger col-lg-2 m-2" asp-controller="Insureds" asp-action="Delete" asp-route-id="@Model?.Id">Odstranit pojištěnce</a>
 		</div>
-		<a class="btn btn-secondary m-2" asp-action="Index">Zpět</a>
+		<a class="btn btn-secondary m-2" asp-controller="Insureds" asp-action="Index">Zpět</a>
         
     </div>
 </section>
