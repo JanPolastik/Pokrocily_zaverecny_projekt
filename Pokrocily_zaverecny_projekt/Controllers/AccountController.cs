@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pokrocily_zaverecny_projekt.Models;
+
 using static Pokrocily_zaverecny_projekt.Models.RegisterViewModel;
 
 namespace Pokrocily_zaverecny_projekt.Controllers
@@ -57,10 +59,11 @@ namespace Pokrocily_zaverecny_projekt.Controllers
 
             return View(model);
         }
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult Register(string? returnUrl = null)

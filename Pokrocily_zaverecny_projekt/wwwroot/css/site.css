@@ -5,5 +5,7 @@
 footer > div {
     background-color: black;
     color: aliceblue;
+    position: absolute;
+    bottom: 0;
 }
 
