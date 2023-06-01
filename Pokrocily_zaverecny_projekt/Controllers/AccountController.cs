@@ -60,7 +60,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Logout(string returnUrl)
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");

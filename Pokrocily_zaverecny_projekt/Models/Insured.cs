@@ -23,5 +23,9 @@ namespace Pokrocily_zaverecny_projekt.Models
         [Required(ErrorMessage = "Vyplňte město")]
         public string Mesto { get; set; } = "";
         public virtual ICollection<Insurance>? Insurances { get; set; }
+        public override string ToString()
+        {
+            return Jmeno + " " + Prijmeni;
+        }
     }
 }
