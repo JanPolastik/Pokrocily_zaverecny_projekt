@@ -12,10 +12,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-    @section Scripts {
-        @await Html.PartialAsync("_ValidationScriptsPartial")
-    }
+    
 </head>
 <body class="pozadi">
     <header class="mb-5 sticky-md-top">
@@ -53,11 +50,14 @@
                 @RenderBody()
    
     </div>
-    <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
+    <footer class="bd-footer py-1 py-md-2 mt-5 bg-body-tertiary">
         <div class="container  px-4 px-md-3">
             <p>Vytvořil &copyJaPo 2023 </p>
 		</div>
     </footer>
-    
+    @await RenderSectionAsync("Scripts", required: false)
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
 </body>
 </html>
