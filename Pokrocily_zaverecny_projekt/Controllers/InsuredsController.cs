@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Pokrocily_zaverecny_projekt.Data;
 using Pokrocily_zaverecny_projekt.Models;
 
 namespace Pokrocily_zaverecny_projekt.Controllers
 {
+    [Authorize(Roles="admin")]
     public class InsuredsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,6 +31,7 @@ namespace Pokrocily_zaverecny_projekt.Controllers
         }
 
         // GET: Insureds/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Insured == null)
